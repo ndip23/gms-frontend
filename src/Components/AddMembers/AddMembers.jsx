@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Stack from '@mui/material/Stack';
 import LinearProgress from '@mui/material/LinearProgress';
+import prof from '../Assets/prof.jpg'; // Ensure the path to your image is correct
 
 const AddMembers = () => {
     const [inputField, setInputField] = useState({
@@ -9,7 +10,7 @@ const AddMembers = () => {
         number: "",
         address: "",
         membership: "",
-        profilePic: "",
+        profilePic: prof, // Set the default profile picture here
         joiningDate: "",
     });
 
@@ -21,6 +22,9 @@ const AddMembers = () => {
         if (!file) {
             return;
         }
+
+        // Clear the default profile picture when a new file is selected
+        setInputField(prev => ({ ...prev, profilePic: "" }));
 
         const data = new FormData();
         data.append('file', file);
